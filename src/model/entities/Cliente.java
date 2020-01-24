@@ -1,30 +1,68 @@
 package model.entities;
 
-public class Cliente {
-    private String identificador;
-    private String senha;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Cliente extends Pessoa {
+    private String endereco;
+    private String telefone;
+    private List<VeiculoSegurado> veiculoSegurados;
 
     public Cliente() {
     }
 
-    public Cliente(String identificador, String senha) {
-        this.identificador = identificador;
-        this.senha = senha;
+    public Cliente(String nome, Date dataNascimento, String endereco, String telefone) {
+        super(nome, dataNascimento);
+        this.endereco = endereco;
+        this.telefone = telefone;
     }
 
-    public String getIdentificador() {
-        return identificador;
+    public Cliente(String nome, Date dataNascimento, String endereco, String telefone, List<VeiculoSegurado> veiculoSegurados) {
+        super(nome, dataNascimento);
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.veiculoSegurados = veiculoSegurados;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public String getSenha() {
-        return senha;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public List<VeiculoSegurado> getVeiculoSegurados() {
+        return veiculoSegurados;
+    }
+
+    public void setVeiculoSegurados(List<VeiculoSegurado> veiculoSegurados) {
+        this.veiculoSegurados = veiculoSegurados;
+    }
+
+    @Override
+    public String toString() {
+        String vec = "";
+
+        if(veiculoSegurados == null) {
+            vec = " Nenhum Veículo Cadastrado";
+        }
+        else{
+            for(VeiculoSegurado v : veiculoSegurados){
+               vec =  v.toString();
+            }
+        }
+        return super.toString() + " Endereço : " + endereco + " Telefone: " + telefone + vec;
     }
 }
+
+
