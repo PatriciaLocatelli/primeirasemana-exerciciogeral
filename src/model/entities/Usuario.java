@@ -35,4 +35,5 @@ public class Usuario extends Pessoa {
     public String toString() {
         return super.toString() + " Identificador: " + identificador + " Senha : *******";
     }
+
 }
