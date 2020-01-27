@@ -29,6 +29,9 @@ public class ClienteController implements CrudInterface {
         if (clientes.size() != 0) {
             for (Cliente c : getClientes()) {
                 System.out.println(c.toString());
+                if (c.getVeiculoSegurados() != null) {
+                    c.getVeiculoSegurados();
+                }
             }
         } else {
             System.out.println("Nenhum cliente cadastrado");
@@ -62,7 +65,7 @@ public class ClienteController implements CrudInterface {
                 }
             }
         } else {
-            System.out.println("Cliente não encontrado, é necessário cadastrar cliente");
+            System.out.println("Cliente não encontrado");
             cli = null;
         }
         return cli;

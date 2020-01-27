@@ -22,7 +22,6 @@ public class Program {
         ClienteController clienteController = new ClienteController();
         UsuarioController usuarioController = new UsuarioController();
         VeiculoSeguradoController veiculoSeguradoController = new VeiculoSeguradoController();
-        List<VeiculoSegurado> veiculos = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         int opcao = 0;
@@ -70,7 +69,7 @@ public class Program {
                     if (op == 'S') {
                         System.out.println("Quantos? ");
                         int qtd = sc.nextInt();
-
+                        List<VeiculoSegurado> veiculos = new ArrayList<>();
                         for (int i = 1; i <= qtd; i++) {
                             System.out.println("Dados do Veículo " + i);
                             System.out.println("Digite a kilometragem: ");
@@ -82,10 +81,10 @@ public class Program {
                             System.out.println("Dados do modelo: ");
                             System.out.println("Descrição: ");
                             String descricao = sc.nextLine();
+                            veiculos.add(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
                             veiculoSeguradoController.cadastrar(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
                         }
-                        clienteController.cadastrar(new Cliente(nome, data, endereco, telefone, veiculoSeguradoController.getVeiculoSegurados()));
-
+                        clienteController.cadastrar(new Cliente(nome, data, endereco, telefone, veiculos));
                     } else if (op == 'N') {
                         clienteController.cadastrar(new Cliente(nome, data, endereco, telefone));
                         System.out.println("Cliente cadastrado com sucesso !!!");
@@ -137,8 +136,33 @@ public class Program {
                     usuarioController.listar();
                     break;
                 case 7:
+                    Cliente c = new Cliente();
+                    VeiculoSegurado v = new VeiculoSegurado();
+                    System.out.println("Digite o nome do Cliente que você deseja remover");
+                    search = sc.nextLine();
+                    c = clienteController.pesquisarPorNome(search);
+                    if (c != null) {
+                        clienteController.remover(c);
+
+                        System.out.println("Cliente removido com sucesso");
+                    } else {
+                        System.out.println("Não foi possível remover o cliente");
+                    }
                     break;
                 case 8:
+                    VeiculoSegurado veic = new VeiculoSegurado();
+                    System.out.println("Digite a placa do veículo que você deseja remover: ");
+                    search = sc.nextLine();
+
+                    veic = veiculoSeguradoController.pesquisarPorPlaca(search);
+                    if (veic != null) {
+                        System.out.println(veic.getCliente().toString());
+                        veiculoSeguradoController.remover(veic);
+                        System.out.println("Veiculo removido com sucesso");
+
+                    } else {
+                        System.out.println("Não foi possível remover");
+                    }
                     break;
                 case 9:
                     Usuario user = new Usuario();

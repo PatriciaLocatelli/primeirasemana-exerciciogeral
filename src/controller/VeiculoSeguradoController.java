@@ -49,4 +49,21 @@ public class VeiculoSeguradoController implements CrudInterface {
             System.out.println("Nenhum Veículo Segurado Cadastrado");
         }
     }
+
+    public VeiculoSegurado pesquisarPorPlaca(String search) {
+        VeiculoSegurado v = new VeiculoSegurado();
+        if (veiculoSegurados.size() != 0) {
+            for (VeiculoSegurado veic : veiculoSegurados) {
+                if (veic.getPlaca().equals(search)) {
+                    System.out.println("Encontrado  !!!");
+                    v = veic;
+                }
+            }
+        } else {
+            System.out.println("Não encontrado");
+            v = null;
+        }
+
+        return v;
+    }
 }

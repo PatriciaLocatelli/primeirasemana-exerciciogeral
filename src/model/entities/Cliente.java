@@ -53,15 +53,14 @@ public class Cliente extends Pessoa {
     public String toString() {
         String vec = "";
 
-        if(veiculoSegurados == null) {
+        if (veiculoSegurados == null) {
             vec = " Nenhum Veículo Cadastrado";
-        }
-        else{
-            for(VeiculoSegurado v : veiculoSegurados){
-               vec =  v.toString();
+        } else {
+            for (VeiculoSegurado v : veiculoSegurados) {
+                vec = v.getPlaca();
             }
         }
-        return super.toString() + " Endereço : " + endereco + " Telefone: " + telefone + vec;
+        return super.toString() + " Endereço : " + endereco + " Telefone: " + telefone + " Placa do Veículo: " + vec;
     }
 }
 
