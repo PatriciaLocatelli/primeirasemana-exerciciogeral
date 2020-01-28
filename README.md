@@ -11,5 +11,5 @@ Esse exercício engloba os seguintes conceitos:
   - Classes Abstratas
   - Interface
 
-Diagrama UML usado nesse exercício:
+Insipirado no seguinte diagrama UML :
 https://ibb.co/5GBx4df
