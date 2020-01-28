@@ -15,12 +15,12 @@ public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado>
 
     @Override
     public void cadastrar(VeiculoSegurado obj) {
-        veiculoSegurados.add((VeiculoSegurado) obj);
+        veiculoSegurados.add(obj);
     }
 
     @Override
     public void remover(VeiculoSegurado obj) {
-        veiculoSegurados.remove((VeiculoSegurado) obj);
+        veiculoSegurados.remove(obj);
     }
 
     @Override

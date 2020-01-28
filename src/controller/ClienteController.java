@@ -15,12 +15,12 @@ public class ClienteController implements CrudInterface<Cliente> {
 
     @Override
     public void cadastrar(Cliente obj) {
-        clientes.add((Cliente) obj);
+        clientes.add(obj);
     }
 
     @Override
     public void remover(Cliente obj) {
-        clientes.remove((Cliente) obj);
+        clientes.remove(obj);
     }
 
     @Override

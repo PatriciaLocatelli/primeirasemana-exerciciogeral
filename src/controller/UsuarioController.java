@@ -10,12 +10,12 @@ public class UsuarioController implements CrudInterface<Usuario> {
 
     @Override
     public void cadastrar(Usuario obj) {
-        usuarios.add((Usuario) obj);
+        usuarios.add(obj);
     }
 
     @Override
     public void remover(Usuario obj) {
-        usuarios.remove((Usuario) obj);
+        usuarios.remove(obj);
     }
 
     @Override
