@@ -7,13 +7,7 @@ import java.util.List;
 
 public class ClienteController implements CrudInterface<Cliente> {
 
-
     List<Cliente> clientes = new ArrayList<>();
-
-// Criar na main e injetar abaixo
-//    public ClienteController(List<Cliente> clientes) {
-//        this.clientes = clientes;
-//    }
 
     public List<Cliente> getClientes() {
         return clientes;

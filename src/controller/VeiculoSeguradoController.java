@@ -5,9 +5,6 @@ import model.entities.VeiculoSegurado;
 import java.util.ArrayList;
 import java.util.List;
 
-// Criar metodo para limpar
-// Limpar na main
-// Criar uma nova instancia de veiculosegurocontroller a cada utilizacao
 public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado> {
 
     List<VeiculoSegurado> veiculoSegurados = new ArrayList<>();
@@ -56,16 +53,16 @@ public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado>
     public VeiculoSegurado pesquisarPorPlaca(String search) {
         VeiculoSegurado resultadoBusca = null;
         // for Cliente cliente : listaClientes
-            if (veiculoSegurados.size() != 0) {
-                for (VeiculoSegurado veic : veiculoSegurados) {
-                    if (veic.getPlaca().equals(search)) {
-                        System.out.println("Encontrado  !!!");
-                        resultadoBusca = veic;
-                    }
+        if (veiculoSegurados.size() != 0) {
+            for (VeiculoSegurado veic : veiculoSegurados) {
+                if (veic.getPlaca().equals(search)) {
+                    System.out.println("Encontrado  !!!");
+                    resultadoBusca = veic;
                 }
-            } else {
-                System.out.println("Não encontrado");
             }
+        } else {
+            System.out.println("Não encontrado");
+        }
 
         return resultadoBusca;
     }
