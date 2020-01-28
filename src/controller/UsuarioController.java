@@ -5,16 +5,16 @@ import model.entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioController implements CrudInterface {
+public class UsuarioController implements CrudInterface<Usuario> {
     List<Usuario> usuarios = new ArrayList<>();
 
     @Override
-    public void cadastrar(Object obj) {
+    public void cadastrar(Usuario obj) {
         usuarios.add((Usuario) obj);
     }
 
     @Override
-    public void remover(Object obj) {
+    public void remover(Usuario obj) {
         usuarios.remove((Usuario) obj);
     }
 

@@ -5,7 +5,10 @@ import model.entities.VeiculoSegurado;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VeiculoSeguradoController implements CrudInterface {
+// Criar metodo para limpar
+// Limpar na main
+// Criar uma nova instancia de veiculosegurocontroller a cada utilizacao
+public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado> {
 
     List<VeiculoSegurado> veiculoSegurados = new ArrayList<>();
 
@@ -14,12 +17,12 @@ public class VeiculoSeguradoController implements CrudInterface {
     }
 
     @Override
-    public void cadastrar(Object obj) {
+    public void cadastrar(VeiculoSegurado obj) {
         veiculoSegurados.add((VeiculoSegurado) obj);
     }
 
     @Override
-    public void remover(Object obj) {
+    public void remover(VeiculoSegurado obj) {
         veiculoSegurados.remove((VeiculoSegurado) obj);
     }
 
@@ -51,19 +54,19 @@ public class VeiculoSeguradoController implements CrudInterface {
     }
 
     public VeiculoSegurado pesquisarPorPlaca(String search) {
-        VeiculoSegurado v = new VeiculoSegurado();
-        if (veiculoSegurados.size() != 0) {
-            for (VeiculoSegurado veic : veiculoSegurados) {
-                if (veic.getPlaca().equals(search)) {
-                    System.out.println("Encontrado  !!!");
-                    v = veic;
+        VeiculoSegurado resultadoBusca = null;
+        // for Cliente cliente : listaClientes
+            if (veiculoSegurados.size() != 0) {
+                for (VeiculoSegurado veic : veiculoSegurados) {
+                    if (veic.getPlaca().equals(search)) {
+                        System.out.println("Encontrado  !!!");
+                        resultadoBusca = veic;
+                    }
                 }
+            } else {
+                System.out.println("Não encontrado");
             }
-        } else {
-            System.out.println("Não encontrado");
-            v = null;
-        }
 
-        return v;
+        return resultadoBusca;
     }
 }

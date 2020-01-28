@@ -5,22 +5,27 @@ import model.entities.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteController implements CrudInterface {
+public class ClienteController implements CrudInterface<Cliente> {
 
 
     List<Cliente> clientes = new ArrayList<>();
+
+// Criar na main e injetar abaixo
+//    public ClienteController(List<Cliente> clientes) {
+//        this.clientes = clientes;
+//    }
 
     public List<Cliente> getClientes() {
         return clientes;
     }
 
     @Override
-    public void cadastrar(Object obj) {
+    public void cadastrar(Cliente obj) {
         clientes.add((Cliente) obj);
     }
 
     @Override
-    public void remover(Object obj) {
+    public void remover(Cliente obj) {
         clientes.remove((Cliente) obj);
     }
 

@@ -3,10 +3,10 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface CrudInterface {
+public interface CrudInterface<E> {
 
-    public abstract void cadastrar(Object obj);
-    public abstract void remover(Object obj);
+    public abstract void cadastrar(E obj);
+    public abstract void remover(E obj);
     public abstract void listar();
     public abstract void pesquisar(String search);
 }
