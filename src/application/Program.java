@@ -27,6 +27,7 @@ public class Program {
         int opcao = 0;
 
         while (true) {
+            System.out.println("\n==========================================");
             System.out.println("Digite a Operação que você deseja realizar");
             System.out.println(
                     "1 – Cadastrar Cliente\n" +
