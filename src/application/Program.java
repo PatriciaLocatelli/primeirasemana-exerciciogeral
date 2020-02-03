@@ -10,10 +10,13 @@ import model.entities.VeiculoSegurado;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.time.LocalDate.parse;
 
 public class Program {
     public static void main(String[] args) throws ParseException {
@@ -22,7 +25,6 @@ public class Program {
         ClienteController clienteController = new ClienteController();
         UsuarioController usuarioController = new UsuarioController();
         VeiculoSeguradoController veiculoSeguradoController = new VeiculoSeguradoController();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         int opcao = 0;
 
@@ -54,9 +56,8 @@ public class Program {
                     String nome = sc.nextLine();
 
                     System.out.println("Digite a data de Nascimento: ");
-                    Date data = sdf.parse(sc.next());
-
-                    sc.nextLine();
+                    LocalDate data = parse(sc.nextLine()
+                            , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
                     System.out.println("Digite o endereço: ");
                     String endereco = sc.nextLine();
@@ -116,9 +117,9 @@ public class Program {
                     System.out.println("Digite o nome: ");
                     nome = sc.nextLine();
                     System.out.println("Digite a data de Nascimento: ");
-                    data = sdf.parse(sc.next());
+                    data = data = parse(sc.nextLine()
+                            , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-                    sc.nextLine();
 
                     System.out.println("Digite o identificador: ");
                     String identificador = sc.nextLine();
@@ -138,7 +139,7 @@ public class Program {
                     break;
                 case 7:
                     Cliente c = new Cliente();
-                    VeiculoSegurado v = new VeiculoSegurado();
+                    //VeiculoSegurado v = new VeiculoSegurado();
                     System.out.println("Digite o nome do Cliente que você deseja remover");
                     search = sc.nextLine();
                     c = clienteController.pesquisarPorNome(search);

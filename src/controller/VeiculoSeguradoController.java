@@ -26,6 +26,7 @@ public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado>
     @Override
     public void listar() {
         if (veiculoSegurados.size() != 0) {
+            //veiculoSegurados.forEach(System.out::println);
             for (VeiculoSegurado veiculos : veiculoSegurados) {
                 System.out.println(veiculos.toString());
             }

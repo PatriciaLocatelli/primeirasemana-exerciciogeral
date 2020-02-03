@@ -31,7 +31,7 @@ public class UsuarioController implements CrudInterface<Usuario> {
 
     @Override
     public void pesquisar(String search) {
-        if (usuarios.size() != 0) {
+        if (!usuarios.isEmpty()) {
             for (Usuario usr : usuarios) {
                 if (usr.getIdentificador().equals(search)) {
                     System.out.println("ACHEEEI !");

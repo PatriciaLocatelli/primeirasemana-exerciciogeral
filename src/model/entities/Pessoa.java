@@ -1,15 +1,16 @@
 package model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Pessoa {
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Date dataNascimento) {
+    public Pessoa(String nome, LocalDate dataNascimento) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
@@ -22,16 +23,16 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     @Override
     public String toString() {
-        return " Nome : " + nome + " Data Nacimento : " + dataNascimento;
+        return String.format(" Nome : " + nome + " Data Nacimento : " + DateTimeFormatter.ofPattern("dd/MM/yyyy").format(dataNascimento));
     }
 }

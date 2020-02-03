@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Usuario extends Pessoa {
@@ -9,7 +10,7 @@ public class Usuario extends Pessoa {
     public Usuario() {
     }
 
-    public Usuario(String nome, Date dataNascimento, String identificador, String senha) {
+    public Usuario(String nome, LocalDate dataNascimento, String identificador, String senha) {
         super(nome, dataNascimento);
         this.identificador = identificador;
         this.senha = senha;

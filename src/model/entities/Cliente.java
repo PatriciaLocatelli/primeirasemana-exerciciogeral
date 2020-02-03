@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,13 +13,13 @@ public class Cliente extends Pessoa {
     public Cliente() {
     }
 
-    public Cliente(String nome, Date dataNascimento, String endereco, String telefone) {
+    public Cliente(String nome, LocalDate dataNascimento, String endereco, String telefone) {
         super(nome, dataNascimento);
         this.endereco = endereco;
         this.telefone = telefone;
     }
 
-    public Cliente(String nome, Date dataNascimento, String endereco, String telefone, List<VeiculoSegurado> veiculoSegurados) {
+    public Cliente(String nome, LocalDate dataNascimento, String endereco, String telefone, List<VeiculoSegurado> veiculoSegurados) {
         super(nome, dataNascimento);
         this.endereco = endereco;
         this.telefone = telefone;
