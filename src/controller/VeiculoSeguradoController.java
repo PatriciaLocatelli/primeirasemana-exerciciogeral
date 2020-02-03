@@ -37,7 +37,7 @@ public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado>
 
     @Override
     public void pesquisar(String search) {
-        if (veiculoSegurados.size() != 0) {
+        if (!veiculoSegurados.isEmpty()) {
             for (VeiculoSegurado veiculos : veiculoSegurados) {
                 if (veiculos.getPlaca().equals(search)) {
                     System.out.println("Encontreiii !!!");
@@ -54,7 +54,7 @@ public class VeiculoSeguradoController implements CrudInterface<VeiculoSegurado>
     public VeiculoSegurado pesquisarPorPlaca(String search) {
         VeiculoSegurado resultadoBusca = null;
         // for Cliente cliente : listaClientes
-        if (veiculoSegurados.size() != 0) {
+        if (!veiculoSegurados.isEmpty()) {
             for (VeiculoSegurado veic : veiculoSegurados) {
                 if (veic.getPlaca().equals(search)) {
                     System.out.println("Encontrado  !!!");

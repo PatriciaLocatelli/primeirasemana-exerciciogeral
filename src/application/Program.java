@@ -8,18 +8,18 @@ import model.entities.Modelo;
 import model.entities.Usuario;
 import model.entities.VeiculoSegurado;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import static java.time.LocalDate.parse;
 
 public class Program {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         ClienteController clienteController = new ClienteController();
@@ -47,86 +47,108 @@ public class Program {
                             "0 – Sair"
 
             );
-            opcao = sc.nextInt();
-            sc.nextLine();
-
+            try {
+                opcao = sc.nextInt();
+                sc.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Digito inválido, tente novamente");
+            }
             switch (opcao) {
                 case 1:
+                    LocalDate data;
                     System.out.println("Digite o nome: ");
                     String nome = sc.nextLine();
 
-                    System.out.println("Digite a data de Nascimento: ");
-                    LocalDate data = parse(sc.nextLine()
-                            , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    try {
+                        System.out.println("Digite a data de Nascimento: ");
+                        data = parse(sc.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-                    System.out.println("Digite o endereço: ");
-                    String endereco = sc.nextLine();
+                        System.out.println("Digite o endereço: ");
+                        String endereco = sc.nextLine();
 
-                    System.out.println("Digite o seu telefone: ");
-                    String telefone = sc.nextLine();
+                        System.out.println("Digite o seu telefone: ");
+                        String telefone = sc.nextLine();
 
 
-                    System.out.println("Você deseja cadastrar um veículo agora? (S / N)");
-                    char op = sc.next().charAt(0);
-                    if (op == 'S') {
-                        System.out.println("Quantos? ");
-                        int qtd = sc.nextInt();
-                        List<VeiculoSegurado> veiculos = new ArrayList<>();
-                        for (int i = 1; i <= qtd; i++) {
-                            System.out.println("Dados do Veículo " + i);
-                            System.out.println("Digite a kilometragem: ");
-                            double kilometragem = sc.nextDouble();
-                            sc.nextLine();
-                            System.out.println("Placa :");
-                            String placa = sc.nextLine();
+                        System.out.println("Você deseja cadastrar um veículo agora? (S / N)");
+                        char op = sc.nextLine().toUpperCase().charAt(0);
 
-                            System.out.println("Dados do modelo: ");
-                            System.out.println("Descrição: ");
-                            String descricao = sc.nextLine();
-                            veiculos.add(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
-                            veiculoSeguradoController.cadastrar(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
+                        if (op == 'S') {
+                            System.out.println("Quantos? ");
+                            int qtd = sc.nextInt();
+                            List<VeiculoSegurado> veiculos = new ArrayList<>();
+                            for (int i = 1; i <= qtd; i++) {
+                                System.out.println("Dados do Veículo " + i);
+                                System.out.println("Digite a kilometragem: ");
+                                double kilometragem = sc.nextDouble();
+                                sc.nextLine();
+                                System.out.println("Placa :");
+                                String placa = sc.nextLine();
+
+                                System.out.println("Dados do modelo: ");
+                                System.out.println("Descrição: ");
+                                String descricao = sc.nextLine();
+                                veiculos.add(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
+                                veiculoSeguradoController.cadastrar(new VeiculoSegurado(kilometragem, placa, new Cliente(nome, data, endereco, telefone), new Modelo(descricao)));
+                            }
+                            clienteController.cadastrar(new Cliente(nome, data, endereco, telefone, veiculos));
+                        } else if (op == 'N') {
+                            clienteController.cadastrar(new Cliente(nome, data, endereco, telefone));
+                            System.out.println("Cliente cadastrado com sucesso !!!");
+                        } else {
+                            System.out.println("Digito inválido");
                         }
-                        clienteController.cadastrar(new Cliente(nome, data, endereco, telefone, veiculos));
-                    } else if (op == 'N') {
-                        clienteController.cadastrar(new Cliente(nome, data, endereco, telefone));
-                        System.out.println("Cliente cadastrado com sucesso !!!");
+                    } catch (DateTimeException e) {
+                        System.out.println("Formato de data inválido");
+                    } catch (InputMismatchException e) {
+                        System.out.println("Dado inválido");
                     }
 
                     break;
                 case 2:
+                    String search;
                     Cliente cliente = new Cliente();
-                    System.out.println("Digite a kilometragem: ");
-                    double kilometragem = sc.nextDouble();
-                    sc.nextLine();
-                    System.out.println("Placa :");
-                    String placa = sc.nextLine();
+                    try {
 
-                    System.out.println("Dados do modelo: ");
-                    System.out.println("Descrição: ");
-                    String descricao = sc.nextLine();
+                        System.out.println("Digite a kilometragem: ");
+                        double kilometragem = sc.nextDouble();
+                        sc.nextLine();
+                        System.out.println("Placa :");
+                        String placa = sc.nextLine();
 
-                    System.out.println("Digite o nome do cliente");
-                    String search = sc.nextLine();
-                    cliente = clienteController.pesquisarPorNome(search);
-                    if (cliente != null) {
-                        veiculoSeguradoController.cadastrar(new VeiculoSegurado(kilometragem, placa, cliente, new Modelo(descricao)));
-                        System.out.println("Veículo Segurado cadastrado com sucesso");
+                        System.out.println("Dados do modelo: ");
+                        System.out.println("Descrição: ");
+                        String descricao = sc.nextLine();
+
+                        System.out.println("Digite o nome do cliente");
+                        search = sc.nextLine();
+                        cliente = clienteController.pesquisarPorNome(search);
+                        if (cliente != null) {
+                            veiculoSeguradoController.cadastrar(new VeiculoSegurado(kilometragem, placa, cliente, new Modelo(descricao)));
+                            System.out.println("Veículo Segurado cadastrado com sucesso");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Dado inválido");
                     }
                     break;
                 case 3:
                     System.out.println("Digite o nome: ");
                     nome = sc.nextLine();
                     System.out.println("Digite a data de Nascimento: ");
-                    data = data = parse(sc.nextLine()
-                            , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    try {
+                        data = parse(sc.nextLine()
+                                , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 
-                    System.out.println("Digite o identificador: ");
-                    String identificador = sc.nextLine();
-                    System.out.println("Digite a senha: ");
-                    String senha = sc.nextLine();
+                        System.out.println("Digite o identificador: ");
+                        String identificador = sc.nextLine();
+                        System.out.println("Digite a senha: ");
+                        String senha = sc.nextLine();
 
-                    usuarioController.cadastrar(new Usuario(nome, data, identificador, senha));
+                        usuarioController.cadastrar(new Usuario(nome, data, identificador, senha));
+                    } catch (DateTimeException e) {
+                        System.out.println("Formato de data inválido");
+                    }
                     break;
                 case 4:
                     clienteController.listar();
@@ -139,7 +161,6 @@ public class Program {
                     break;
                 case 7:
                     Cliente c = new Cliente();
-                    //VeiculoSegurado v = new VeiculoSegurado();
                     System.out.println("Digite o nome do Cliente que você deseja remover");
                     search = sc.nextLine();
                     c = clienteController.pesquisarPorNome(search);

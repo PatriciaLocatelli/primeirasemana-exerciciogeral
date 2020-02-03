@@ -49,7 +49,7 @@ public class UsuarioController implements CrudInterface<Usuario> {
     public Usuario pesquisarPorNome(String nome) {
         Usuario user = new Usuario();
 
-        if (usuarios.size() != 0) {
+        if (!usuarios.isEmpty()) {
             for (Usuario usr : usuarios) {
                 if (usr.getNome().equals(nome)) {
                     user = usr;
