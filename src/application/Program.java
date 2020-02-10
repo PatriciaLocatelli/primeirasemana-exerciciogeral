@@ -7,6 +7,7 @@ import model.entities.Cliente;
 import model.entities.Modelo;
 import model.entities.Usuario;
 import model.entities.VeiculoSegurado;
+import model.exceptions.DateTime;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -99,7 +100,8 @@ public class Program {
                             System.out.println("Digito inválido");
                         }
                     } catch (DateTimeException e) {
-                        System.out.println("Formato de data inválido");
+//                    } catch (DateTimeException | InputMismatchException e) {
+                        throw new DateTime("Formato da data Inválido");
                     } catch (InputMismatchException e) {
                         System.out.println("Dado inválido");
                     }
